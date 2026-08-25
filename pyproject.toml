@@ -1,0 +1,29 @@
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project]
+name = "tensorforge"
+version = "0.1.0"
+description = "From-scratch NumPy tensor autograd engine with a first-class finite-difference gradient verification harness"
+readme = "README.md"
+requires-python = ">=3.9"
+license = { text = "MIT" }
+authors = [{ name = "Harman Hanjra" }]
+dependencies = ["numpy>=1.24"]
+
+[project.optional-dependencies]
+test = ["pytest>=7", "ruff", "bandit"]
+
+[project.scripts]
+tensorforge = "tensorforge.cli:main"
+
+[tool.hatch.build.targets.wheel]
+packages = ["src/tensorforge"]
+
+[tool.ruff.lint]
+select = ["E", "F", "W", "I", "B"]
+ignore = ["E501"]
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
